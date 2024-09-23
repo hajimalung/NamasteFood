@@ -58,8 +58,9 @@ const Body = ()=>{
             Search Bar
         </div>
         <div className="res-container">
-            <RestaurantCard resName="Biryanis and More" resCuisine="South, North Indian, Biryani, Asian" resRating="4.5" resDeliveryTime="38"/>
-            <RestaurantCard resName="KFC" resCuisine="Kentukky Fried" resRating="4" resDeliveryTime="20"/>
+            {
+                restaurantsList.map(res => (<RestaurantCard key={res.name} resName={res.name} resCuisine={res.cuisines.join(", ")} resRating={res.ratings} resDeliveryTime={res.deliveryTime} />))
+            }
         </div>
     </div>
     );
