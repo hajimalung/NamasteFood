@@ -35,23 +35,22 @@ const styleCard = {
 
 // sending props to component and using  
 const RestaurantCard = (props) => {
-    const {resName, resCuisine, resRating, resDeliveryTime} = props;
+    const {name, cuisines, ratings, deliveryTime} = props.resData;
     return (
         <div className="res-card" style={styleCard}>
             <img 
             alt="restaurant logo"
             className="res-image" 
             src="https://www.cubesnjuliennes.com/wp-content/uploads/2020/07/Chicken-Biryani-Recipe.jpg" />
-            <h3>{resName}</h3>
-            <h4>{resCuisine}</h4>
-            <h4>{resRating } Stars</h4>
-            <h4>{resDeliveryTime} Minutes</h4>
+            <h3>{name}</h3>
+            <h4>{cuisines.join(", ")}</h4>
+            <h4>{ratings } Stars</h4>
+            <h4>{deliveryTime} Minutes</h4>
         </div>
     );
 }
 
 const Body = ()=>{
-    console.log(restaurantsList);
     return (
     <div className="body">
         <div className="search">
@@ -59,7 +58,7 @@ const Body = ()=>{
         </div>
         <div className="res-container">
             {
-                restaurantsList.map(res => (<RestaurantCard key={res.name} resName={res.name} resCuisine={res.cuisines.join(", ")} resRating={res.ratings} resDeliveryTime={res.deliveryTime} />))
+                restaurantsList.map(res => (<RestaurantCard key={res.name} resData={res} />))
             }
         </div>
     </div>
