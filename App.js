@@ -33,17 +33,17 @@ const styleCard = {
 
 // sending props to component and using  
 const RestaurantCard = (props) => {
-    console.log(props);
+    const {resName, resCuisine, resRating, resDeliveryTime} = props;
     return (
         <div className="res-card" style={styleCard}>
             <img 
             alt="restaurant logo"
             className="res-image" 
             src="https://www.cubesnjuliennes.com/wp-content/uploads/2020/07/Chicken-Biryani-Recipe.jpg" />
-            <h3>{props.resName}</h3>
-            <h4>{props.resCuisine}</h4>
-            <h4>{props.resRating } Stars</h4>
-            <h4>{props.resDeliveryTime} Minutes</h4>
+            <h3>{resName}</h3>
+            <h4>{resCuisine}</h4>
+            <h4>{resRating } Stars</h4>
+            <h4>{resDeliveryTime} Minutes</h4>
         </div>
     );
 }
