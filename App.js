@@ -30,17 +30,20 @@ const Header = ()=>{
 const styleCard = {
     backgroundColor : "#f0f0f0"
 };
-const RestaurantCard = () => {
+
+// sending props to component and using  
+const RestaurantCard = (props) => {
+    console.log(props);
     return (
         <div className="res-card" style={styleCard}>
             <img 
             alt="restaurant logo"
             className="res-image" 
             src="https://www.cubesnjuliennes.com/wp-content/uploads/2020/07/Chicken-Biryani-Recipe.jpg" />
-            <h3>Biryani's and More</h3>
-            <h4>South, North Indian, Biryani, Asian</h4>
-            <h4>4.5 Stars</h4>
-            <h4>38 Minutes</h4>
+            <h3>{props.resName}</h3>
+            <h4>{props.resCuisine}</h4>
+            <h4>{props.resRating } Stars</h4>
+            <h4>{props.resDeliveryTime} Minutes</h4>
         </div>
     );
 }
@@ -52,16 +55,8 @@ const Body = ()=>{
             Search Bar
         </div>
         <div className="res-container">
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
+            <RestaurantCard resName="Biryanis and More" resCuisine="South, North Indian, Biryani, Asian" resRating="4.5" resDeliveryTime="38"/>
+            <RestaurantCard resName="KFC" resCuisine="Kentukky Fried" resRating="4" resDeliveryTime="20"/>
         </div>
     </div>
     );
