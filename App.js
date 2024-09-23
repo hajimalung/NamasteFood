@@ -35,7 +35,12 @@ const styleCard = {
 
 // sending props to component and using  
 const RestaurantCard = (props) => {
-    const {name, cuisines, avgRating, sla, costForTwo, cloudinaryImageId} = props.resData.info;
+    const { name, 
+            cuisines, 
+            avgRating, 
+            sla, 
+            costForTwo, 
+            cloudinaryImageId } = props?.resData?.info; // // ? -  is called optional chaining
     const cloudinaryImageBaseURL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
     return (
         <div className="res-card" style={styleCard}>
@@ -46,25 +51,47 @@ const RestaurantCard = (props) => {
             <h3>{name}</h3>
             <h4>{cuisines.join(", ")}</h4>
             <h4> {avgRating } 🌟  :  { costForTwo }</h4>
-            <h4>{sla.deliveryTime} Minutes</h4>
+            <h4>{sla.deliveryTime} Minutes</h4> 
         </div>
     );
 }
 
-//swiggy respse restaurnat data
+const SearchBar = ()=>{
+    return (
+    <>
+        <input type="text" className="search-control"></input>
+        <button>Search</button>
+    </>
+    );
+}
 
+//swiggy restaurnat data
 const Body = ()=>{
     return (
     <div className="body">
         <div className="search">
-            Search Bar
+            <SearchBar />
         </div>
         <div className="res-container">
-            {/* <RestaurantCard resData={resData} /> */}
             {
-                restaurantsList.map(res => (<RestaurantCard key={res.name} resData={res} />))
+                // react need an unique id to identify individual card to optimize its render cycles
+                // at same level components
+                // if dont give keys then for any change in this level react re renders all cards
+                // if we give keys it will become easy for react to identify and rerender that particular card
+                // no is (not recomended) - ⚠️
+                // index as key (not recomended) - ‼️
+                // unique key - (best practice ) - ☮️ 
+                restaurantsList.map(res => (<RestaurantCard key={res.info.id} resData={res} />)) 
             }
         </div>
+    </div>
+    );
+}
+
+const Footer = () => {
+    return (
+    <div className="footer">
+        ©Hajimalung
     </div>
     );
 }
@@ -74,10 +101,7 @@ const AppLayout = ()=>{
     <div className="app">
         <Header />
         <Body />
-    {/*
-        Body
-        Builder
-    */}
+        <Footer />
     </div>
     );
 }
