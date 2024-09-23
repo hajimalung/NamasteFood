@@ -7,6 +7,8 @@ import ReactDOM from "react-dom/client"
 
 import "./index.css"
 
+import restaurantsList from "./mockdata/restaurants";
+
 const Header = ()=>{
     return (
         <div className="header">
@@ -49,6 +51,7 @@ const RestaurantCard = (props) => {
 }
 
 const Body = ()=>{
+    console.log(restaurantsList);
     return (
     <div className="body">
         <div className="search">
