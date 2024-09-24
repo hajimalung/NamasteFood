@@ -1,6 +1,6 @@
 import SearchBar from "./SearchBar";
 import RestaurantCard from "./RestaurantCard";
-import restaurantsList from "../../mockdata/restaurants";
+import restaurantsList from "../utils/mockdata/restaurants";
 
 //swiggy restaurnat data
 const Body = ()=>{
