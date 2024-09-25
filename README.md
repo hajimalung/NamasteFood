@@ -30,3 +30,8 @@ Food Ordering app
         - Address
         - Contact info
         -
+
+# Features
+
+    - shows top rated restaurants on button click
+    -
