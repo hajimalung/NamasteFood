@@ -2,6 +2,7 @@ import SearchBar from "./SearchBar";
 import RestaurantCard from "./RestaurantCard";
 import restaurantsList from "../utils/mockdata/restaurants";
 import { useState } from "react";
+import restaurants from "../utils/mockdata/restaurants";
 
 //swiggy restaurnat data
 const Body = ()=>{
@@ -12,15 +13,26 @@ const Body = ()=>{
     // need to creates state variable so that react will be keeping an eye on data change and react on dom
     // Local state variable, scoped to this component 
     const [listOfRestaurants, setlistOfRestaurants] = useState(restaurantsList);  // array destructuring
+    
 
     const filtertopRatedRestaurants = ()=>{
         setlistOfRestaurants(restaurantsList.filter( restaurant => restaurant.info.avgRating >= 4 ));
     };
 
+    const filterRestaurantsByName = (nameStringToMatch)=>{
+        setlistOfRestaurants(restaurantsList.filter(restaurant => restaurant.info.name.includes(nameStringToMatch)));
+    }
+
+    const searchQueryListener = (searchConfig)=>{
+        const searchString = searchConfig.query;
+        console.log("in body search "+searchString);
+        filterRestaurantsByName(searchString);
+    }
+
     return (
     <div className="body">
         <div className="search">
-            <SearchBar />
+            <SearchBar searchQueryListener={searchQueryListener} />
             <div className="filters">
                 <button className="filter-btn" onClick={filtertopRatedRestaurants}> Top Rated Restaurants </button>
             </div>

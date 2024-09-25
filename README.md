@@ -36,6 +36,6 @@ Food Ordering app
     - shows top rated restaurants on button click
         - useState - Hook -
 
-React Fibre
+React Fibre - Incremental Rendering
 
 - https://github.com/acdlite/react-fiber-architecture
