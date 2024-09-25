@@ -20,7 +20,7 @@ const Body = ()=>{
     };
 
     const filterRestaurantsByName = (nameStringToMatch)=>{
-        setlistOfRestaurants(restaurantsList.filter(restaurant => restaurant.info.name.includes(nameStringToMatch)));
+        setlistOfRestaurants(restaurantsList.filter(restaurant => restaurant.info.name.toLowerCase().includes(nameStringToMatch)));
     }
 
     const searchQueryListener = (searchConfig)=>{
