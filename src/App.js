@@ -1,7 +1,7 @@
 /*!SECTION
     lets build a food ordering app like swiggy and zomato
 */
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client"
 
 import "../index.css"
@@ -21,4 +21,8 @@ const AppLayout = ()=>{
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
+root.render(
+    <StrictMode>
+        <AppLayout />
+    </StrictMode>
+    );

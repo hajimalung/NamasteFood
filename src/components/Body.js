@@ -5,13 +5,16 @@ import { useState } from "react";
 
 //swiggy restaurnat data
 const Body = ()=>{
+    
+    // this is normal js varible react does not know the data changes
+    //let listOfRestaurants = restaurantsList;
 
-    const [listOfRestaurants, setValue] = useState(restaurantsList);
-
-    // const listOfRestaurants = restaurantsList;
+    // need to creates state variable so that react will be keeping an eye on data change and react on dom
+    // Local state variable, scoped to this component 
+    const [listOfRestaurants, setlistOfRestaurants] = useState(restaurantsList);  // array destructuring
 
     const filtertopRatedRestaurants = ()=>{
-         setValue(restaurantsList.filter(restaurant => restaurant.info.avgRating>=4.2));
+        setlistOfRestaurants(restaurantsList.filter( restaurant => restaurant.info.avgRating >= 4 ));
     };
 
     return (
