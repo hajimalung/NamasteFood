@@ -1,6 +1,5 @@
 import SearchBar from "./SearchBar";
 import RestaurantCard from "./RestaurantCard";
-import restaurantsList from "../utils/mockdata/restaurants";
 import { useState, useEffect } from "react";
 import { fetchSwiggyData } from "../utils/data-utils";
 
@@ -12,7 +11,7 @@ const Body = ()=>{
 
     // need to creates state variable so that react will be keeping an eye on data change and react on dom
     // Local state variable, scoped to this component 
-    const [listOfRestaurants, setlistOfRestaurants] = useState(restaurantsList);  // array destructuring
+    const [listOfRestaurants, setlistOfRestaurants] = useState([]);  // array destructuring
 
     // this call back function is called after the component is rendered!
     useEffect(()=>{
@@ -35,7 +34,8 @@ const Body = ()=>{
         
         respJson.then(resp=>{
             console.log(resp)
-            const restaurantListRespArr = resp.data.cards.filter(card=>card.card.card.gridElements).filter(card=>card.card.card.gridElements.infoWithStyle.restaurants).reduce((acc,curr)=>acc.concat(curr.card.card.gridElements.infoWithStyle.restaurants),[]);
+            // read about optional chaingin for null or undefined checks
+            const restaurantListRespArr = resp?.data?.cards?.filter(card=>card.card.card.gridElements)?.filter(card=>card?.card?.card?.gridElements?.infoWithStyle?.restaurants).reduce((acc,curr)=>acc?.concat(curr.card.card.gridElements.infoWithStyle.restaurants),[]);
             console.log(restaurantListRespArr);
             setlistOfRestaurants(restaurantListRespArr);
         });
@@ -44,22 +44,29 @@ const Body = ()=>{
     
 
     const filtertopRatedRestaurants = ()=>{
-        setlistOfRestaurants(restaurantsList.filter( restaurant => restaurant.info.avgRating >= 4 ));
+        setlistOfRestaurants(listOfRestaurants.filter( restaurant => restaurant.info.avgRating >= 4 ));
         console.log("filtering")
     };
 
     const filterRestaurantsByName = (nameStringToMatch)=>{
-        setlistOfRestaurants(restaurantsList.filter(restaurant => restaurant.info.name.toLowerCase().includes(nameStringToMatch)));
+        setlistOfRestaurants(listOfRestaurants.filter(restaurant => restaurant.info.name.toLowerCase().includes(nameStringToMatch)));
         console.log("searching!!");
     }
 
     const searchQueryListener = (searchConfig)=>{
         const searchString = searchConfig.query;
         console.log("in body search "+searchString);
+        if(searchString==""){
+            alert("reset to original!");
+        }
         filterRestaurantsByName(searchString);
     }
 
     console.log("body rendered!");
+    
+    if(listOfRestaurants.length==0){
+        return (<div>Lets get some fooooood!</div>);
+    }
 
     return (
     <div className="body">
@@ -70,24 +77,19 @@ const Body = ()=>{
             </div>
         </div>
         <div className="res-container">
-               { getBodyFor(listOfRestaurants) }
+               {
+                // react need an unique id to identify individual card to optimize its render cycles
+                // at same level components
+                // if dont give keys then for any change in this level react re renders all cards
+                // if we give keys it will become easy for react to identify and rerender that particular card
+                // no is (not recomended) - ⚠️
+                // index as key (not recomended) - ‼️
+                // unique key - (best practice ) - ☮️ 
+                listOfRestaurants.map(res => (<RestaurantCard key={res.info.id} resData={res} />)) 
+                }
         </div>
     </div>
     );
-}
-function getBodyFor(listOfRestaurants){
-    if(listOfRestaurants.length==0){
-        return (<>No Restaurants found!! 😭</>);
-    }else{
-        // react need an unique id to identify individual card to optimize its render cycles
-    // at same level components
-    // if dont give keys then for any change in this level react re renders all cards
-    // if we give keys it will become easy for react to identify and rerender that particular card
-    // no is (not recomended) - ⚠️
-    // index as key (not recomended) - ‼️
-    // unique key - (best practice ) - ☮️ 
-    return listOfRestaurants.map(res => (<RestaurantCard key={res.info.id} resData={res} />))
-    }
 }
 
 export default Body;
