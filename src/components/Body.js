@@ -2,6 +2,7 @@ import SearchBar from "./SearchBar";
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import { fetchSwiggyData } from "../utils/data-utils";
+import CardsShimmer from "./CardsShimmer"; 
 
 //swiggy restaurnat data
 const Body = ()=>{
@@ -64,8 +65,10 @@ const Body = ()=>{
 
     console.log("body rendered!");
     
+    // conditional rendering 
+    
     if(listOfRestaurants.length==0){
-        return (<div>Lets get some fooooood!</div>);
+        return (<CardsShimmer></CardsShimmer>);
     }
 
     return (
