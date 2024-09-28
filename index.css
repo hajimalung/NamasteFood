@@ -74,3 +74,8 @@ body{
    background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
    
 }
+
+.login-btn{
+    padding: 0 20;
+    cursor: pointer;
+}

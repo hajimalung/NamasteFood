@@ -1,5 +1,14 @@
+import { useState } from "react";
 import { APP_LOGO_URL } from "../utils/constants"; "../utils/constants";  // importing named exports with { }
 const Header = ()=>{
+
+    const [textToShow, setTextToShow] = useState("Login");
+
+
+    const onLoggerButtonClick = ()=>{
+        setTextToShow(textToShow==="Login" ? "Logout" : "Login")
+
+    }
     return (
         <div className="header">
             <div className="logo-container">
@@ -11,6 +20,7 @@ const Header = ()=>{
                     <li>About us</li>
                     <li>Help</li>
                     <li>Cart</li>
+                    <button className="login-btn" onClick={onLoggerButtonClick}>{textToShow}</button>
                 </ul>
             </div>
         </div>
