@@ -50,7 +50,12 @@ const Body = ()=>{
     };
 
     const filterRestaurantsByName = (nameStringToMatch)=>{
-        setlistOfRestaurants(listOfRestaurants.filter(restaurant => restaurant.info.name.toLowerCase().includes(nameStringToMatch)));
+        const filteredResult = listOfRestaurants.filter(restaurant => restaurant.info.name.toLowerCase().includes(nameStringToMatch));
+        if(filteredResult.length==0){
+            console.error("no restaurants found with search query : "+nameStringToMatch);
+            return;
+        }
+        setlistOfRestaurants(filteredResult);
         console.log("searching!!");
     }
 
@@ -65,6 +70,7 @@ const Body = ()=>{
     }
 
     // whenever there is a state variable update react triggeres reconciliation cycle( re renderes coponent!!! )
+    // it is very fast and effiecient because of the diff algo dev by meta(react reconciliation or also known as react fiber architecture)
     console.log("body rendered!");
     
     // conditional rendering 
