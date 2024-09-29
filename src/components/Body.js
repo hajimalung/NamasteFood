@@ -6,6 +6,9 @@ import CardsShimmer from "./CardsShimmer";
 
 //swiggy restaurnat data
 const Body = ()=>{
+
+    
+    const [originalList,setOriginalList] = useState([]);
     
     // this is normal js varible react does not know the data changes
     //let listOfRestaurants = restaurantsList;
@@ -36,21 +39,22 @@ const Body = ()=>{
         respJson.then(resp=>{
             console.log(resp)
             // read about optional chaingin for null or undefined checks
-            const restaurantListRespArr = resp?.data?.cards?.filter(card=>card.card.card.gridElements)?.filter(card=>card?.card?.card?.gridElements?.infoWithStyle?.restaurants).reduce((acc,curr)=>acc?.concat(curr.card.card.gridElements.infoWithStyle.restaurants),[]);
-            console.log(restaurantListRespArr);
-            setlistOfRestaurants(restaurantListRespArr);
+            const respFromList = resp?.data?.cards?.filter(card=>card.card.card.gridElements)?.filter(card=>card?.card?.card?.gridElements?.infoWithStyle?.restaurants).reduce((acc,curr)=>acc?.concat(curr.card.card.gridElements.infoWithStyle.restaurants),[]);
+            console.log(respFromList);
+            setOriginalList(respFromList);
+            setlistOfRestaurants(respFromList);
         });
 
     }
     
 
     const filtertopRatedRestaurants = ()=>{
-        setlistOfRestaurants(listOfRestaurants.filter( restaurant => restaurant.info.avgRating >= 4 ));
+        setlistOfRestaurants(originalList.filter( restaurant => restaurant.info.avgRating >= 4 ));
         console.log("filtering")
     };
 
     const filterRestaurantsByName = (nameStringToMatch)=>{
-        const filteredResult = listOfRestaurants.filter(restaurant => restaurant.info.name.toLowerCase().includes(nameStringToMatch));
+        const filteredResult = originalList.filter(restaurant => restaurant.info.name.toLowerCase().includes(nameStringToMatch));
         if(filteredResult.length==0){
             console.error("no restaurants found with search query : "+nameStringToMatch);
             return;
@@ -62,10 +66,6 @@ const Body = ()=>{
     const searchQueryListener = (searchConfig)=>{
         const searchString = searchConfig.query;
         console.log("in body search "+searchString);
-        if(searchString==""){
-            fetchData();
-            return;
-        }
         filterRestaurantsByName(searchString);
     }
 
@@ -77,8 +77,12 @@ const Body = ()=>{
     
     if(listOfRestaurants.length==0){
         return (<>
-            <SearchBar searchQueryListener={searchQueryListener} />
-            <CardsShimmer></CardsShimmer>
+            <div className="body">
+                <div className="search"><SearchBar searchQueryListener={searchQueryListener} /></div>
+                <div className="res-container">
+                <CardsShimmer></CardsShimmer>
+                </div>
+            </div>
         </>);
     }
 
