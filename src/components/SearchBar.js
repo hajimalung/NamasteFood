@@ -12,6 +12,8 @@ const SearchBar = (props)=>{
             searchQueryListener.call(null,{ query:searchQuery });
         }
     }
+
+    console.log("Search Rendered!");
     
     return (
     <>

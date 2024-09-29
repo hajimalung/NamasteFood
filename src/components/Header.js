@@ -9,6 +9,9 @@ const Header = ()=>{
         setTextToShow(textToShow==="Login" ? "Logout" : "Login")
 
     }
+    
+    console.log("Header rendered!");
+
     return (
         <div className="header">
             <div className="logo-container">

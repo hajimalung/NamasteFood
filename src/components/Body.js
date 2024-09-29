@@ -64,6 +64,7 @@ const Body = ()=>{
         filterRestaurantsByName(searchString);
     }
 
+    // whenever there is a state variable update react triggeres reconciliation cycle( re renderes coponent!!! )
     console.log("body rendered!");
     
     // conditional rendering 
