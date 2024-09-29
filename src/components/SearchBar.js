@@ -1,10 +1,12 @@
+import React, { useState } from "react";
+
 const SearchBar = (props)=>{
 
     const { searchQueryListener } = props;
+    const [searchQuery, setSearchQuery] = useState("");
 
 
     const searchString = ()=>{
-        var searchQuery = document.getElementById("search").value;
         console.log("search for "+searchQuery);
         if(searchQueryListener){
             searchQueryListener.call(null,{ query:searchQuery });
@@ -13,7 +15,7 @@ const SearchBar = (props)=>{
     
     return (
     <>
-        <input type="text" className="search-control" id="search"></input>
+        <input type="text" className="search-control" value={searchQuery} onChange={(e)=>{setSearchQuery(e.target.value)}}></input>
         <button onClick={searchString}>Search</button>
     </>
     );

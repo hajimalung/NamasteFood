@@ -58,7 +58,8 @@ const Body = ()=>{
         const searchString = searchConfig.query;
         console.log("in body search "+searchString);
         if(searchString==""){
-            alert("reset to original!");
+            fetchData();
+            return;
         }
         filterRestaurantsByName(searchString);
     }
@@ -68,7 +69,10 @@ const Body = ()=>{
     // conditional rendering 
     
     if(listOfRestaurants.length==0){
-        return (<CardsShimmer></CardsShimmer>);
+        return (<>
+            <SearchBar searchQueryListener={searchQueryListener} />
+            <CardsShimmer></CardsShimmer>
+        </>);
     }
 
     return (
