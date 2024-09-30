@@ -37,7 +37,6 @@ const Body = ()=>{
         const respJson =  fetchSwiggyData();
         
         respJson.then(resp=>{
-            console.log(resp)
             // read about optional chaingin for null or undefined checks
             const respFromList = resp?.data?.cards?.filter(card=>card.card.card.gridElements)?.filter(card=>card?.card?.card?.gridElements?.infoWithStyle?.restaurants).reduce((acc,curr)=>acc?.concat(curr.card.card.gridElements.infoWithStyle.restaurants),[]);
             console.log(respFromList);
@@ -103,7 +102,7 @@ const Body = ()=>{
                 // no is (not recomended) - ⚠️
                 // index as key (not recomended) - ‼️
                 // unique key - (best practice ) - ☮️ 
-                listOfRestaurants.map(res => (<RestaurantCard key={res.info.id} resData={res} />)) 
+                listOfRestaurants.map((res,ind) => (<RestaurantCard key={res.info.id+"_"+ind} resData={res} />)) 
                 }
         </div>
     </div>
