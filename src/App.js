@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import AboutUs from "./components/Aboutus";
+import ContactUs from "./components/Contactus";
 
 const AppLayout = ()=>{
     return (
@@ -32,6 +33,10 @@ const appRouter = createBrowserRouter([
     {
         path:"/aboutus",
         element:<AboutUs />
+    },
+    {
+        path:"/contactus",
+        element: <ContactUs />
     }
 ]);
 
