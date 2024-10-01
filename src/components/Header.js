@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { APP_LOGO_URL } from "../utils/constants"; "../utils/constants";  // importing named exports with { }
 const Header = ()=>{
 
+    // we we dont provide dep array in useEffect it will call arrow func everytime the component renders
+    // check by login/logout 
+    // useEffect(()=>{console.log("Headers UseEffect!!!")});
+
+    // if the dependency array is empty useEffet is called only intial render - only once
+    // useEffect(()=>{console.log("Headers UseEffect!!!")},[]);
+
     const [textToShow, setTextToShow] = useState("Login");
+    
+    // if there is any state variable mention in dep array, it wil be called whenever there is a change in state variable
+    useEffect(()=>{console.log("Headers UseEffect!!!")},[textToShow]);
+    
+    
 
 
     const onLoggerButtonClick = ()=>{

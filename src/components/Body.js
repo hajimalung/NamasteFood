@@ -19,7 +19,7 @@ const Body = ()=>{
 
     // this call back function is called after the component is rendered!
     useEffect(()=>{
-        console.log("useEffect called!");
+        console.log("Body useEffect called!");
         fetchData();
     },[]); // dependency array , if this is empty the effect will be called only once
 
