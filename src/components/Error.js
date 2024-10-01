@@ -1,7 +1,12 @@
+import { useRouteError } from "react-router-dom";
+
 const Error = ()=>{
+    const err = useRouteError();
+    console.log(err);
     return (
         <div>
-            Lost in the great void!!! 😭
+            <h1> Lost in the great void!!! 😭 </h1>
+            <h3>{ err?.status } : { err?.statusText }</h3>
         </div>
     );
 }
