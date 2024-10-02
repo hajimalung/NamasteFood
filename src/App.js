@@ -10,7 +10,7 @@ import Header from "./components/Header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
 // createBrowserRouter will help in creating route config
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 import AboutUs from "./components/Aboutus";
 import ContactUs from "./components/Contactus";
@@ -20,7 +20,7 @@ const AppLayout = ()=>{
     return (
     <div className="app">
         <Header />
-        <Body />
+        <Outlet />
         <Footer />
     </div>
     );
@@ -30,15 +30,20 @@ const appRouter = createBrowserRouter([
     {
         path:"/",
         element: <AppLayout />,
+        children:[
+            {
+                path:"/",
+                element:<Body />
+            },
+            {
+                path:"/aboutus",
+                element:<AboutUs />
+            },
+            {
+                path:"/contactus",
+                element: <ContactUs />
+            }],
         errorElement: <Error />
-    },
-    {
-        path:"/aboutus",
-        element:<AboutUs />
-    },
-    {
-        path:"/contactus",
-        element: <ContactUs />
     }
 ]);
 
