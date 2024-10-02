@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { APP_LOGO_URL } from "../utils/constants"; "../utils/constants";  // importing named exports with { }
 const Header = ()=>{
 
@@ -31,8 +32,17 @@ const Header = ()=>{
             </div>
             <div className="nav-items">
                 <ul>
-                    <li>Home</li>
-                    <li>About us</li>
+                    <li>
+                        <Link to={"/"}>Home</Link>
+                    </li>
+                    {/* never use anchor tags for routing links? it will refresh the whole page , causing local state to lose */}
+                    <li>
+                        {/* <a href="/aboutus"> About Us </a> */}
+                        <Link to="/aboutus"> About Us </Link>
+                    </li>
+                    <li>
+                        <Link to={"/contactus"} >Contact Us</Link>
+                    </li>
                     <li>Help</li>
                     <li>Cart</li>
                     <button className="login-btn" onClick={onLoggerButtonClick}>{textToShow}</button>
