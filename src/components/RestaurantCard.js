@@ -3,7 +3,7 @@ import { IMAGE_CDN_URL } from "../utils/constants";
 // inline css in jsx 
 // it is not a preffered way to write 
 const styleCard = {
-    backgroundColor : "#f0f0f0"
+    backgroundColor : "#ffffff"
 };
 
 // sending props to component and using  
@@ -19,7 +19,8 @@ const RestaurantCard = (props) => {
             <img 
             alt="restaurant logo"
             className="res-image" 
-            src={ IMAGE_CDN_URL + cloudinaryImageId } />
+            src={ IMAGE_CDN_URL + cloudinaryImageId } 
+            />
             <h3>{name}</h3>
             <h4>{cuisines.join(", ")}</h4>
             <h4> {avgRating } 🌟  :  { costForTwo }</h4>

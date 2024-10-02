@@ -34,7 +34,7 @@ const RestaurantDetails = ()=>{
                     <h3>{ resInfo?.locality}</h3>
                     <p>{ resInfo?.sla?.slaString } - { resInfo?.costForTwoMessage }</p>
                 </div>
-                <div>
+                <div className="res-header-right">
                     <img  
                         alt="restauratn image"
                         src={ IMAGE_CDN_URL + resInfo.cloudinaryImageId }
