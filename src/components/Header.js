@@ -33,6 +33,7 @@ const Header = ()=>{
             <div className="nav-items">
                 <ul>
                     <li>
+                    {/* link is a wrapper over anchor tag but with routing capability */}
                         <Link to={"/"}>Home</Link>
                     </li>
                     {/* never use anchor tags for routing links? it will refresh the whole page , causing local state to lose */}

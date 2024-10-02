@@ -3,6 +3,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import { fetchSwiggyData } from "../utils/data-utils";
 import CardsShimmer from "./CardsShimmer"; 
+import { Link } from "react-router-dom";
 
 //swiggy restaurnat data
 const Body = ()=>{
@@ -102,7 +103,14 @@ const Body = ()=>{
                 // no is (not recomended) - ⚠️
                 // index as key (not recomended) - ‼️
                 // unique key - (best practice ) - ☮️ 
-                listOfRestaurants.map((res,ind) => (<RestaurantCard key={res.info.id+"_"+ind} resData={res} />)) 
+                listOfRestaurants.map((res,ind) => (
+                    <Link
+                    key={res.info.id+"_"+ind} 
+                    to={"/restaurant/"+res.info.id} >
+                        <RestaurantCard resData={res} />
+                    </Link>
+                    
+                    )) 
                 }
         </div>
     </div>
