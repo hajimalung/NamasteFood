@@ -20,6 +20,7 @@ class UserClass extends React.Component{
         // this.state.count = this.state.count+1; 
         // never update state vars directly!!!
         this.setState({
+            ...this.state,
             count:this.state.count+1
         });
         // in class componenets we will have to use setState method to update state variables
