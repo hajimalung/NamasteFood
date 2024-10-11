@@ -23,7 +23,7 @@ class AboutUs extends Component{
             About us rendered!!
             <h1>This is Food ordering app!!</h1>
                 <UserClass name={"baba (classic)"} location={"NGKL classic"}/>
-                <UserClass name={"baba (classic 2)"} location={"NGKL classic"}/>
+                <UserClass name={"daanish)"} location={"NGKL classic"}/>
             </div>);
     }
 }

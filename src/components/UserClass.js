@@ -20,7 +20,7 @@ class UserClass extends React.Component{
             count : 0,
             count2 : 5
         }   // this is reserved in react class components
-        console.log("constructor got called first!!");
+        console.log(this.props.name+"constructor got called first!!");
     }
 
     increaseCnt(){
@@ -35,13 +35,13 @@ class UserClass extends React.Component{
     }
 
     componentDidMount(){
-        console.log("component did mount got called third!")
+        console.log(this.props.name+"component did mount got called third!");
         // mostly component did mount is used to make API calls once the component is atached to dom 
     }
 
     // always need to use this. 
     render(){
-        console.log("render got called second!!")
+        console.log(this.props.name+"render got called second!!");
         const {name,location} = this.props;
         const {count, count2} = this.state;
         return (
