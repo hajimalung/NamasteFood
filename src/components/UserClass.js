@@ -3,6 +3,13 @@
 import React from "react";
 
 // constructor will receive the props, we need to call super with props
+
+
+// life cycle constructor -> render -> coponentDidMount
+// if any child component is ther in jsx before mounting parent component
+// child component constructor -> child render -> child componentDidMount? will get called
+
+// parent constructor -> parent render -> child constructor -> child render -> child mounted -> parent mounted 
 class UserClass extends React.Component{
 
     constructor(props){
@@ -13,6 +20,7 @@ class UserClass extends React.Component{
             count : 0,
             count2 : 5
         }   // this is reserved in react class components
+        console.log("constructor got called first!!");
     }
 
     increaseCnt(){
@@ -26,8 +34,14 @@ class UserClass extends React.Component{
 
     }
 
+    componentDidMount(){
+        console.log("component did mount got called third!")
+        // mostly component did mount is used to make API calls once the component is atached to dom 
+    }
+
     // always need to use this. 
     render(){
+        console.log("render got called second!!")
         const {name,location} = this.props;
         const {count, count2} = this.state;
         return (
