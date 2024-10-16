@@ -10,48 +10,47 @@ import React from "react";
 // child component constructor -> child render -> child componentDidMount? will get called
 
 // parent constructor -> parent render -> child constructor -> child render -> child mounted -> parent mounted 
+// dom gets updated after render phase and before commit phase
 class UserClass extends React.Component{
 
     constructor(props){
-        super(props); // dont forget this - why is homework?
-        console.log(props);
+        super(props); // dont forget this - why to super(props) is homework?
         // this is the best place to create state variables
         this.state ={
-            count : 0,
-            count2 : 5
+            userInfo : {
+                name : "John Doe",
+                public_repos : 0
+            }
         }   // this is reserved in react class components
         console.log(this.props.name+"constructor got called first!!");
     }
 
-    increaseCnt(){
-        // increasing it simply does not work!! even if we bind it !!
-        // this.state.count = this.state.count+1; 
-        // never update state vars directly!!!
-        this.setState({
-            count:this.state.count+1
-        });
-        // in class componenets we will have to use setState method to update state variables
-
-    }
-
-    componentDidMount(){
+    async componentDidMount(){
         console.log(this.props.name+"component did mount got called third!");
         // mostly component did mount is used to make API calls once the component is atached to dom 
+        const respPromise = fetch("https://api.github.com/users/hajimalung")
+        .then(resp => resp.json())
+        .then(dataJSON => this.setState({
+            userInfo : dataJSON
+        }));
+    }
+    componentDidUpdate(){
+        console.log("component did update!!");
+    }
+    componentWillUnmount(){
+        console.log("component will get unmounted!");
     }
 
     // always need to use this. 
     render(){
+        const { name, location, avatar_url } = this.state.userInfo;
         console.log(this.props.name+"render got called second!!");
-        const {name,location} = this.props;
-        const {count, count2} = this.state;
         return (
         <div className="user-card">
-            <h1>Count : {count}</h1>
-            <button onClick={this.increaseCnt.bind(this)}> count + 1 </button>
-                <p>{count2}</p>
+            <img src={avatar_url}></img>
             <h2>Name: {name}</h2>
-            <h3>Location: {location}</h3>
-            <h4>hajimalungbaba.786@gmail.com</h4>
+            <h3>Location : {location}</h3>
+            <h6>{location}</h6>
         </div>);
     }
 }

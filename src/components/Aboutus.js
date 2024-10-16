@@ -5,6 +5,10 @@ import { Component } from "react";
 
 // if there are multipl child componentes to be mounted the lifecycle will look like
 // parent contructor -> parent render -> child1 constructor -> child1 render -> child2 constructor -> child2 render ...... -> child1 component did mount -> child2 component did mount -> parnet component did mount
+// react will batch the render phase of all childs and once all childs render phase is done then triggers commit phase
+// https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+// dom gets updated after render phase and before commit phase
 
 class AboutUs extends Component{
     constructor(props){
@@ -23,7 +27,6 @@ class AboutUs extends Component{
             About us rendered!!
             <h1>This is Food ordering app!!</h1>
                 <UserClass name={"baba (classic)"} location={"NGKL classic"}/>
-                <UserClass name={"daanish)"} location={"NGKL classic"}/>
             </div>);
     }
 }
