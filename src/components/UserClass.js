@@ -13,6 +13,8 @@ import React from "react";
 // dom gets updated after render phase and before commit phase
 class UserClass extends React.Component{
 
+    intervalId;
+
     constructor(props){
         super(props); // dont forget this - why to super(props) is homework?
         // this is the best place to create state variables
@@ -26,6 +28,11 @@ class UserClass extends React.Component{
     }
 
     async componentDidMount(){
+
+        this.intervalId = setInterval(()=>{
+            console.log("functional are awesome!");
+        },1000);
+
         console.log(this.props.name+"component did mount got called third!");
         // mostly component did mount is used to make API calls once the component is atached to dom 
         const respPromise = fetch("https://api.github.com/users/hajimalung")
@@ -38,6 +45,7 @@ class UserClass extends React.Component{
         console.log("component did update!!");
     }
     componentWillUnmount(){
+        clearInterval(this.intervalId);
         console.log("component will get unmounted!");
     }
 
