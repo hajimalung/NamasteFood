@@ -8,8 +8,6 @@ import { Component } from "react";
 // react will batch the render phase of all childs and once all childs render phase is done then triggers commit phase
 // https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
 
-// dom gets updated after render phase and before commit phase
-
 class AboutUs extends Component{
     constructor(props){
         super(props);

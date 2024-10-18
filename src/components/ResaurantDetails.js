@@ -1,30 +1,19 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { fetchRestaurantDetails, getResInfoFromCards } from "../utils/data-utils";
 
 import CardsShimmer from "./CardsShimmer";
 import ItemCard from "./ItemCard";
 import { IMAGE_CDN_URL } from "../utils/constants";
+// importing custom hook
+import useRestaurantMenu from "../utils/userRestaurantsMenu";
 
 
 const RestaurantDetails = ()=>{
     // build vegOnly toggle
-    const [resInfo,setResInfo] = useState(null);
-    const routerParamsForRestaurant = useParams();
+    const {resId} = useParams();
 
-    useEffect(()=>{
-
-        const resp = fetchRestaurantDetails(routerParamsForRestaurant.resId);
-        resp.then(data=>{
-
-            const cardArray = data.data.cards;
-            const resInfo = getResInfoFromCards(cardArray);
-            
-            setResInfo(resInfo);
-        });
-
-    },[]);
+    const resInfo = useRestaurantMenu(resId);
 
     return resInfo==null ? <CardsShimmer /> :  (
         <div className="res-details">
