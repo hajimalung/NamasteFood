@@ -13,7 +13,13 @@ const Header = ()=>{
     const [textToShow, setTextToShow] = useState("Login");
     
     // if there is any state variable mention in dep array, it wil be called whenever there is a change in state variable
-    useEffect(()=>{console.log("Headers UseEffect!!!")},[textToShow]);
+    useEffect(()=>{
+        console.log("Headers UseEffect!!!");
+        // if we return a function from here that will get called react unmounts this funtion
+        return ()=>{
+            console.log("unmounting header component!");
+        }
+    },[textToShow]);
     
     
 
