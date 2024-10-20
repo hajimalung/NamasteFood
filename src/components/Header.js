@@ -35,32 +35,32 @@ const Header = ()=>{
     console.log("Header rendered!");
 
     return (
-        <div className="header">
+        <div className="header flex justify-between p-4 bg-red-300 shadow-lg sm:bg-purple-300 lg:bg-green-300">
             <div className="logo-container">
-                <img className="logo" src={ APP_LOGO_URL } />
+                <img className="logo w-24" src={ APP_LOGO_URL } />
             </div>
-            <div className="nav-items">
-                <ul>
-                    <li>
-                        { onlineStatus?"⛓️":"⛓️‍💥" }
+            <div className="nav-items flex items-center">
+                <ul className="flex m-4">
+                    <li className="px-4">
+                        { onlineStatus?"❇️":"🅾️" }
                     </li>
-                    <li>
+                    <li className="px-4">
                         {/* link is a wrapper over anchor tag but with routing capability */}
                         <Link to={"/"}>Home</Link>
                     </li>
-                    <li>
+                    <li className="px-4">
                         <Link to={"/grocery"} >Grocery</Link>
                     </li>
                     {/* never use anchor tags for routing links? it will refresh the whole page , causing local state to lose */}
-                    <li>
+                    <li className="px-4">
                         {/* <a href="/aboutus"> About Us </a> */}
                         <Link to="/aboutus"> About Us </Link>
                     </li>
-                    <li>
+                    <li className="px-4">
                         <Link to={"/contactus"} >Contact Us</Link>
                     </li>
-                    <li>Help</li>
-                    <li>Cart</li>
+                    <li className="px-4">Help</li>
+                    <li className="px-4">Cart</li>
                     <button className="login-btn" onClick={onLoggerButtonClick}>{textToShow}</button>
                 </ul>
             </div>

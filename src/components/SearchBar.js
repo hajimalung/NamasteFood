@@ -16,10 +16,10 @@ const SearchBar = (props)=>{
     console.log("Search Rendered!");
     
     return (
-    <>
-        <input type="text" className="search-control" value={searchQuery} onChange={(e)=>{setSearchQuery(e.target.value)}}></input>
-        <button onClick={searchString}>Search</button>
-    </>
+    <div className="mr-4">
+        <input type="text" className="search-contro border border-solid border-purple-500 rounded" value={searchQuery} onChange={(e)=>{setSearchQuery(e.target.value)}}></input>
+        <button onClick={searchString} className="px-4 py-1 bg-green-400 m-4 rounded hover:bg-green-600">Search</button>
+    </div>
     );
 
 }

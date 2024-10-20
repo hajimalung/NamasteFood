@@ -89,13 +89,13 @@ const Body = ()=>{
 
     return (
     <div className="body">
-        <div className="search">
+        <div className="search p-4 m-4 flex items-center">
             <SearchBar searchQueryListener={searchQueryListener} />
             <div className="filters">
-                <button className="filter-btn" onClick={filtertopRatedRestaurants}> Top Rated Restaurants </button>
+                <button className="filter-btn px-4 py-1 bg-green-600 hover:bg-green-900 rounded" onClick={filtertopRatedRestaurants}> Top Rated Restaurants </button>
             </div>
         </div>
-        <div className="res-container">
+        <div className="res-container flex flex-wrap">
                {
                 // react need an unique id to identify individual card to optimize its render cycles
                 // at same level components
