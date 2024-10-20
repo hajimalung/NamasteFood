@@ -1,4 +1,24 @@
-body{
+/* this file has the conventional way of adding css to web page
+    other wasys incliude Sass and scss
+    but these are not recomeneded way to use styles in react
+    
+    ** we need to build styled components!
+
+    we can also use
+    material UI
+    bootstrap
+    ant design - second biggest for react components !!
+    mat
+    chakra UI
+
+    we will be using tailwindcss - a new css framework becoming popular!!
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* body{
     margin: 0px;
 }
 .header{
@@ -122,4 +142,4 @@ body{
     margin: 10px;
     padding: 10px;
     border: 1px solid black;
-}
+} */
