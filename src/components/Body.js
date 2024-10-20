@@ -70,8 +70,6 @@ const Body = ()=>{
         filterRestaurantsByName(searchString);
     }
 
-    let onlineStatus = useOnlineStatus();
-
     // whenever there is a state variable update react triggeres reconciliation cycle( re renderes coponent!!! )
     // it is very fast and effiecient because of the diff algo dev by meta(react reconciliation or also known as react fiber architecture)
     console.log("body rendered!");
@@ -97,7 +95,6 @@ const Body = ()=>{
                 <button className="filter-btn" onClick={filtertopRatedRestaurants}> Top Rated Restaurants </button>
             </div>
         </div>
-        <h3> online status : {onlineStatus?"Online":"Offline"}</h3>
         <div className="res-container">
                {
                 // react need an unique id to identify individual card to optimize its render cycles

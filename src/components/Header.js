@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { APP_LOGO_URL } from "../utils/constants"; "../utils/constants";  // importing named exports with { }
+import { APP_LOGO_URL } from "../utils/constants";import useOnlineStatus from "../utils/useOnlineStatus";
+ "../utils/constants";  // importing named exports with { }
 const Header = ()=>{
 
     // we we dont provide dep array in useEffect it will call arrow func everytime the component renders
@@ -28,6 +29,8 @@ const Header = ()=>{
         setTextToShow(textToShow==="Login" ? "Logout" : "Login")
 
     }
+
+    const onlineStatus = useOnlineStatus();
     
     console.log("Header rendered!");
 
@@ -38,6 +41,9 @@ const Header = ()=>{
             </div>
             <div className="nav-items">
                 <ul>
+                    <li>
+                        { onlineStatus?"🟩":"🟥" }
+                    </li>
                     <li>
                     {/* link is a wrapper over anchor tag but with routing capability */}
                         <Link to={"/"}>Home</Link>
