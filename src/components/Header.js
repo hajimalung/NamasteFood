@@ -42,7 +42,7 @@ const Header = ()=>{
             <div className="nav-items">
                 <ul>
                     <li>
-                        { onlineStatus?"🟩":"🟥" }
+                        { onlineStatus?"⛓️":"⛓️‍💥" }
                     </li>
                     <li>
                         {/* link is a wrapper over anchor tag but with routing capability */}
