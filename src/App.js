@@ -16,6 +16,7 @@ import AboutUs from "./components/Aboutus";
 import ContactUs from "./components/Contactus";
 import Error from "./components/Error";
 import RestaurantDetails from "./components/ResaurantDetails";
+import CardsShimmer from "./components/CardsShimmer";
 // import Grocery from "./components/Grocery";
 
 // chunking .. this is the process of making smaller bundles 
@@ -62,7 +63,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path:"/grocery",
-                element: <Suspense> <Grocery /> </Suspense>
+                element: <Suspense fallback={<CardsShimmer></CardsShimmer>} > <Grocery /> </Suspense>
             },
             {
                 path:"/contactus",
