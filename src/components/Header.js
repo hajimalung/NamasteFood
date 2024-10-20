@@ -45,8 +45,11 @@ const Header = ()=>{
                         { onlineStatus?"🟩":"🟥" }
                     </li>
                     <li>
-                    {/* link is a wrapper over anchor tag but with routing capability */}
+                        {/* link is a wrapper over anchor tag but with routing capability */}
                         <Link to={"/"}>Home</Link>
+                    </li>
+                    <li>
+                        <Link to={"/grocery"} >Grocery</Link>
                     </li>
                     {/* never use anchor tags for routing links? it will refresh the whole page , causing local state to lose */}
                     <li>

@@ -1,7 +1,7 @@
 /*!SECTION
     lets build a food ordering app like swiggy and zomato
 */
-import React, { StrictMode } from "react";
+import React, { StrictMode, lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client"
 
 import "../index.css"
@@ -16,6 +16,22 @@ import AboutUs from "./components/Aboutus";
 import ContactUs from "./components/Contactus";
 import Error from "./components/Error";
 import RestaurantDetails from "./components/ResaurantDetails";
+// import Grocery from "./components/Grocery";
+
+// chunking .. this is the process of making smaller bundles 
+// code splitting
+// dynamic bundling
+// also called lazy oading bundles or chunks
+// on demand loading
+// a bundle should have enough code for a feature
+
+const Grocery = lazy(()=>import("./components/Grocery"));
+// this also leads to failing the route with error when we go to grocery
+// react tries to load this component but component code takes some time reach browser
+// that is why react suspends to load the component
+// we use suspense component given by react to overcome this problem!!
+
+
 
 const AppLayout = ()=>{
     return (
@@ -43,6 +59,10 @@ const appRouter = createBrowserRouter([
             {
                 path:"/aboutus",
                 element:<AboutUs />
+            },
+            {
+                path:"/grocery",
+                element: <Suspense> <Grocery /> </Suspense>
             },
             {
                 path:"/contactus",
