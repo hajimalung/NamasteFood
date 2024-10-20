@@ -79,8 +79,8 @@ const Body = ()=>{
     if(listOfRestaurants.length==0){
         return (<>
             <div className="body">
-                <div className="search"><SearchBar searchQueryListener={searchQueryListener} /></div>
-                <div className="res-container">
+                <div className="search p-4 m-4 flex items-center"><SearchBar searchQueryListener={searchQueryListener} /></div>
+                <div className="res-container flex flex-wrap">
                 <CardsShimmer></CardsShimmer>
                 </div>
             </div>

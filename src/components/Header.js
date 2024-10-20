@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { APP_LOGO_URL } from "../utils/constants";import useOnlineStatus from "../utils/useOnlineStatus";
  "../utils/constants";  // importing named exports with { }
 const Header = ()=>{
@@ -31,6 +31,8 @@ const Header = ()=>{
     }
 
     const onlineStatus = useOnlineStatus();
+
+    const { pathname } = useLocation()
     
     console.log("Header rendered!");
 
@@ -44,23 +46,23 @@ const Header = ()=>{
                     <li className="px-4">
                         { onlineStatus?"❇️":"🅾️" }
                     </li>
-                    <li className="px-4">
+                    <li className={"px-4"+(pathname==="/"?" font-bold":"")}>
                         {/* link is a wrapper over anchor tag but with routing capability */}
                         <Link to={"/"}>Home</Link>
                     </li>
-                    <li className="px-4">
+                    <li className={"px-4"+(pathname==="/grocery"?" font-bold":"")}>
                         <Link to={"/grocery"} >Grocery</Link>
                     </li>
                     {/* never use anchor tags for routing links? it will refresh the whole page , causing local state to lose */}
-                    <li className="px-4">
+                    <li className={"px-4"+(pathname==="/aboutus"?" font-bold":"")}>
                         {/* <a href="/aboutus"> About Us </a> */}
                         <Link to="/aboutus"> About Us </Link>
                     </li>
-                    <li className="px-4">
+                    <li className={"px-4"+(pathname==="/contactus"?" font-bold":"")}>
                         <Link to={"/contactus"} >Contact Us</Link>
                     </li>
-                    <li className="px-4">Help</li>
-                    <li className="px-4">Cart</li>
+                    <li className={"px-4"+(pathname==="/help"?" font-bold":"")}>Help</li>
+                    <li className={"px-4"+(pathname==="/cart"?" font-bold":"")}>Cart</li>
                     <button className="login-btn" onClick={onLoggerButtonClick}>{textToShow}</button>
                 </ul>
             </div>

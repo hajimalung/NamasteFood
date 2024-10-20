@@ -17,7 +17,7 @@ const SearchBar = (props)=>{
     
     return (
     <div className="mr-4">
-        <input type="text" className="search-contro border border-solid border-purple-500 rounded" value={searchQuery} onChange={(e)=>{setSearchQuery(e.target.value)}}></input>
+        <input type="text" className="search-contro px-2 py-1 border border-solid border-purple-500 hover:border-green-700 rounded" value={searchQuery} onChange={(e)=>{setSearchQuery(e.target.value)}}></input>
         <button onClick={searchString} className="px-4 py-1 bg-green-400 m-4 rounded hover:bg-green-600">Search</button>
     </div>
     );
